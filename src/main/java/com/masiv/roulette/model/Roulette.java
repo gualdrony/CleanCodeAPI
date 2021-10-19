@@ -13,9 +13,11 @@ public class Roulette implements Serializable{
     bets = new ArrayList<Bet>();
   }
   public ArrayList<Bet> getBets(){
-	  return this.bets;
+	  
+	return this.bets;
   }
   public String getId() {
+	  
     return id;
   }
   public void setId(String id) {
