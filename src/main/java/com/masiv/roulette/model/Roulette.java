@@ -1,19 +1,24 @@
 package com.masiv.roulette.model;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Roulette {
-  private int id;
+public class Roulette implements Serializable{
+  private static final long serialVersionUID = -803883647256237794L;
+  private String id;
   private boolean open;
   private byte winnerNumber;
   private ArrayList<Bet> bets;
-  public Roulette(int id) {
+  public Roulette(String id) {
     this.id = id;
     this.open = false;
     bets = new ArrayList<Bet>();
   }
-  public int getId() {
+  public ArrayList<Bet> getBets(){
+	  return this.bets;
+  }
+  public String getId() {
     return id;
   }
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
   public void open() {

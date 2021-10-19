@@ -1,5 +1,8 @@
 package com.masiv.roulette.controller;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masiv.roulette.model.Bet;
-import com.masiv.roulette.service.implement.TestServiceImplement;
+import com.masiv.roulette.service.implement.ServicesImplement;
 @RestController
 @RequestMapping("/testRoulette")
 public class Restcontroller {
-  @Autowired private TestServiceImplement testService;
+  @Autowired private ServicesImplement testService;
   @PostMapping("/create")
   public ResponseEntity<?> createRoulette() {
     try {
-      int idRoulette = testService.createRoulette();
+      String idRoulette = testService.createRoulette();
 
       return new ResponseEntity<>(idRoulette, HttpStatus.CREATED);
     } catch (Exception e) {
@@ -30,7 +33,7 @@ public class Restcontroller {
     }
   }
   @PatchMapping("/open/{idRoulette}")
-  public ResponseEntity<?> openRoulette(@PathVariable Integer idRoulette) {
+  public ResponseEntity<?> openRoulette(@PathVariable String idRoulette) {
     try {
       testService.openRoulette(idRoulette);
 
@@ -52,11 +55,11 @@ public class Restcontroller {
     }
   }
   @GetMapping("/close/{idRoulette}")
-  public ResponseEntity<?> closeBet(@PathVariable Integer idRoulette) {
+  public ResponseEntity<?> closeBet(@PathVariable String idRoulette) {
     try {
-      byte winningBeat = testService.closeBet(idRoulette);
+      Map<String,List<Bet>> results = testService.closeBet(idRoulette);
 
-      return new ResponseEntity<>(winningBeat, HttpStatus.ACCEPTED);
+      return new ResponseEntity<>(results, HttpStatus.ACCEPTED);
     } catch (Exception e) {
 
       return new ResponseEntity<>("The roulette didn't close", HttpStatus.NOT_FOUND);

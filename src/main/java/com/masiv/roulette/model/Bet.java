@@ -1,13 +1,15 @@
 package com.masiv.roulette.model;
-public class Bet {
-  private int userId;
+import java.io.Serializable;
+public class Bet implements Serializable{
+  private static final long serialVersionUID = 7975507322842948714L;
+  private String userId;
   private byte expectedNumber;
   private char color;
   private short value;
-  private int idRoulette;
-  public Bet(int user, byte number, char color, short value, int idRoulette) {
-    this.userId = user;
-    this.expectedNumber = number;
+  private String idRoulette;
+  public Bet(String user, byte number, char color, short value, String idRoulette) {
+    userId = user;
+    expectedNumber = number;
     this.color = color;
     this.value = value;
     this.idRoulette = idRoulette;
@@ -26,27 +28,25 @@ public class Bet {
   public void setExpectedNumber(byte expectedNumber) {
     this.expectedNumber = expectedNumber;
   }
-  public int getUserId() {
-    return userId;
+  public String getUserId() {
+   
+	return userId;
   }
-
-  public void setUserId(int userId) {
+  public void setUserId(String userId) {
     this.userId = userId;
   }
-
   public char getColor() {
-    return color;
+    
+	return color;
   }
-
   public void setColor(char color) {
     this.color = color;
   }
-
-  public int getIdRoulette() {
-    return idRoulette;
+  public String getIdRoulette() {
+    
+	return idRoulette;
   }
-
-  public void setIdRoulette(int idRoulette) {
+  public void setIdRoulette(String idRoulette) {
     this.idRoulette = idRoulette;
   }
 }
